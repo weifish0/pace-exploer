@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +32,10 @@
         }
 
         img {
-            max-width: 40%;  /* 控制圖片最大寬度為40% */
-            height: auto;    /* 保持圖片原有的比例 */
+            max-width: 40%;
+            /* 控制圖片最大寬度為40% */
+            height: auto;
+            /* 保持圖片原有的比例 */
         }
 
         .prompt-display {
@@ -41,16 +44,38 @@
             font-size: 1.2em;
             color: #333;
         }
+
+        /* Home Icon 的样式 */
+        #homeIcon {
+            position: absolute;
+            top: 10px;
+            left:10px;
+            z-index: 1000;
+            /* 确保它显示在所有其他内容之上 */
+        }
+
+        #homeIcon img {
+            width: 250px;
+            /* 设置图片的宽度 */
+            height: auto;
+            /* 保持图片的比例 */
+            cursor: pointer;
+            /* 鼠标悬停时显示为指针 */
+        }
     </style>
 </head>
+
 <body>
+    <a href="index.html" id="homeIcon">
+        <img src="./img/home-icon.png" alt="Home Icon">
+    </a>
     <div class="container">
         <h1>AI Image Generator</h1>
         <p>Enter a description for your image:</p>
         <input type="text" id="prompt" placeholder="Enter your image prompt">
         <br>
         <button onclick="generateImage()">Generate Image</button>
-        
+
         <div class="result">
             <div class="prompt-display" id="promptDisplay"></div>
             <img id="generatedImage" src="" alt="Generated Image" style="display:none;">
@@ -93,4 +118,5 @@
         }
     </script>
 </body>
+
 </html>
