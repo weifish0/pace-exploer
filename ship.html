@@ -11,6 +11,12 @@
             margin: 20px;
         }
 
+        p {
+            text-align: left;
+            margin: 30px;
+            margin-top: 60px;
+        }
+
         .container {
             text-align: center;
         }
@@ -31,8 +37,8 @@
             margin-top: 20px;
         }
 
-        img {
-            max-width: 40%;
+        #generatedImage {
+            max-width: 50%;
             /* 控制圖片最大寬度為40% */
             height: auto;
             /* 保持圖片原有的比例 */
@@ -48,19 +54,55 @@
         /* Home Icon 的样式 */
         #homeIcon {
             position: absolute;
-            top: 10px;
-            left:10px;
+            top: 5px;
+            left: 5px;
             z-index: 1000;
             /* 确保它显示在所有其他内容之上 */
         }
 
         #homeIcon img {
-            width: 250px;
+            width: 100px;
             /* 设置图片的宽度 */
             height: auto;
             /* 保持图片的比例 */
             cursor: pointer;
             /* 鼠标悬停时显示为指针 */
+        }
+
+        /* NPC image style */
+        .npc-image {
+            width: 100px;
+            height: auto;
+            transform: scale(2);
+            /* 放大 1.5 倍 */
+        }
+
+        /* Position NPC at the bottom-left corner */
+        .npc-container {
+            position: absolute;
+            bottom: 10px;
+            right: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Dialogue box style */
+        .dialogue-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+            right: 80px;
+            bottom: 10px;
+            width: 400px;
+            height: 130px;
+            font-size: 20px;
+        }
+
+        /* Dialogue text */
+        #npcDialogue {
+            margin: 0;
         }
     </style>
 </head>
@@ -69,9 +111,16 @@
     <a href="index.html" id="homeIcon">
         <img src="./img/home-icon.png" alt="Home Icon">
     </a>
+    <div class="npc-container">
+        <div class="dialogue-box" id="dialogueBox">
+            <p id="npcDialogue">Ahoy, sailor! Use what you’ve learned to imagine real-world impacts—tracking algae that
+                affect our oceans or studying aerosols for air quality. Now, you’re ready to create images that bring
+                these forces to life!</p>
+        </div>
+        <img src="./img/captain.png" alt="Captain NPC" class="npc-image">
+    </div>
     <div class="container">
         <h1>AI Image Generator</h1>
-        <p>Enter a description for your image:</p>
         <input type="text" id="prompt" placeholder="Enter your image prompt">
         <br>
         <button onclick="generateImage()">Generate Image</button>
@@ -92,7 +141,7 @@
                 return;
             }
 
-            const response = await fetch("http://braveflamingdog.com/generate-image", {
+            const response = await fetch("https://nasahackathon-pace-explorer-43736d303f6d.herokuapp.com/generate-image", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
